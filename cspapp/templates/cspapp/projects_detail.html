@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{project.name}}</title>
+    <h1>{{project.name}}
+        (<a href="{% url 'cspapp:project_edit' object.id %}">edit</a>)
+    </h1>
+    {%	if	project.image	%}
+        <p><img	src="{{project.image.url}}" width="300px"/></p>
+    {%	endif	%}
+    <li>
+        <b>Description:</b> {{ object.description }}
+      </li>
+    <li>
+        <b>Department:</b> {{ object.department }}
+    </li>
+    <li>
+        <b>Developers:</b> {{ object.developers }}
+    </li>
+    <li>
+        <b>Link:</b>
+        <a href="{{object.website}}" target="_blank"  > {{object.link}} </a>
+    </li>
+</head>
+<body>
+
+</body>
+</html>

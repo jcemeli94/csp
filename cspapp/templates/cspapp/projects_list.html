@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title> Projects </title>
+    <h1 style="text-indent: 1em">Projects
+      (<a href="{% url 'cspapp:project_create' %}">add</a>)
+    </h1>
+  </head>
+  <body>
+     {% if projects %}
+    <ul>
+    {% for project in projects %}
+    <li>
+    <a href="{% url "cspapp:projects_detail" project.id%}"> {{project.name}} </a>
+    </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p style="text-indent: 2em">Any project yet</p>
+    {% endif %}
+
+    <br>
+      <a href='/'> Home </a>
+  </body>
+</html>
