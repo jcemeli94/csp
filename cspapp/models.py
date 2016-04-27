@@ -22,8 +22,8 @@ class All_users(models.Model):
           return "%s's profile" % self.user
 
 # Create an UserProfile when an user is created.
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_profile_for_new_user(sender, created, instance, **kwargs):
-    if created:
-        profile = All_users(user=instance)
-        profile.save()
+#@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+#def create_profile_for_new_user(sender, created, instance, **kwargs):
+#    if created:
+#       profile = All_users(user=instance)
+#       profile.save()
