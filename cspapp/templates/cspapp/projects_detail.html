@@ -6,6 +6,8 @@
     <h1>{{project.name}}
         (<a href="{% url 'cspapp:project_edit' object.id %}">edit</a>)
     </h1>
+    </li><a class="marge" href="{% url 'delete_project' project.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a>
+
     {%	if	project.image	%}
         <p><img	src="{{project.image.url}}" width="300px"/></p>
     {%	endif	%}

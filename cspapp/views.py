@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from forms import *
 from models import *
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -34,3 +35,9 @@ class ProjectCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(ProjectCreate, self).form_valid(form)
+
+
+def delete_project(request,rest_pk):
+    delRest= Project.objects.get(pk=rest_pk)
+    delRest.delete()
+    return redirect('http://127.0.0.1:8000/')

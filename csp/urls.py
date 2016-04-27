@@ -22,6 +22,9 @@ urlpatterns = [
         template_name='register.html',
         form_class=UserCreationForm,
         success_url='http://127.0.0.1:8000/'),name='register'),
+
+    url(r'^delete_project/(?P<rest_pk>\d+)/$', views.delete_project, name='delete_project'),
+
 ]
 
 if settings.DEBUG:
