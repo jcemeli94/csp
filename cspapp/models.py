@@ -35,7 +35,7 @@ class Department(models.Model):
 
 
 class Project(models.Model):
-    name = models.TextField(blank=True, null=True)
+    name = models.TextField()
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="media", blank=True, null=True)
     link = models.URLField(blank=True, null=True)

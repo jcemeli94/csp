@@ -40,4 +40,4 @@ class ProjectCreate(CreateView):
 def delete_project(request,rest_pk):
     delRest= Project.objects.get(pk=rest_pk)
     delRest.delete()
-    return redirect('http://127.0.0.1:8000/')
+    return redirect('http://127.0.0.1:8000/cspapp/projects/')

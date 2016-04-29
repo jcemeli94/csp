@@ -1,11 +1,14 @@
+{% extends "cspapp/base.html" %}
 <html>
   <head>
     <title> Projects </title>
-    <h1 style="text-indent: 1em">Projects
-      (<a href="{% url 'cspapp:project_create' %}">add</a>)
-    </h1>
   </head>
   <body>
+     {% block project_list %}
+          <h1 style="text-indent: 1em">Projects
+      (<a href="{% url 'cspapp:project_create' %}">add</a>)
+    </h1>
+
      {% if projects %}
     <ul>
     {% for project in projects %}
@@ -20,6 +23,7 @@
     <p style="text-indent: 2em">Any project yet</p>
     {% endif %}
 
+     {% endblock %}
     <br>
       <a href='/'> Home </a>
   </body>
