@@ -1,4 +1,8 @@
 
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,20 +19,9 @@
     {% endif %}
     {% endblock %}
     <p style="text-align: right;"><a href="http://127.0.0.1:8000/admin">Admin</a></p>
+
+
 </head>
-
-<!-- CSS agregado por Jorge para ver el fondo de pantalla completo -->
-
-<style type="text/css">
-    body {
-    background:url(http://warehousecomic.com/comic/theWAREHOUSE_comic_625_wallpaper.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    }
-
-</style>
 
 <h2><ul><a href="/cspapp/projects">Projects list</a></ul></h2>
 

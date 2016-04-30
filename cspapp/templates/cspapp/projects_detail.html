@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>{{project.name}}</title>
-    <h1>{{project.name}}
+    <h2>{{project.name}}
 
         {% if project.developers_id == request.user.id %}
             (<a href="{% url 'cspapp:project_edit' object.id %}">edit</a>)
             <a class="marge" href="{% url 'delete_project' project.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a>
         {% endif %}
-    </h1>
+    </h2>
 
     {%	if	project.image	%}
         <p><img	src="{{project.image.url}}" width="300px"/></p>
