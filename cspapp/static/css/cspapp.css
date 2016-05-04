@@ -1,0 +1,12 @@
+
+
+     h1 { font-size: 4em }
+
+    body {
+    background:url("images/PBA&Q_Group_wall_paper_02.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size:100% 100%;
+    }
+
