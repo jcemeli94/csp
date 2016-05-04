@@ -7,7 +7,7 @@
 
         {% if project.developers_id == request.user.id %}
             (<a href="{% url 'cspapp:project_edit' object.id %}">edit</a>)
-            <a class="marge" href="{% url 'delete_project' project.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a>
+            (<a class="marge" href="{% url 'delete_project' project.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a>)
         {% endif %}
     </h2>
 
@@ -29,6 +29,8 @@
     </li>
 </head>
 <body>
+<br>
+<a href='/cspapp/projects/'> More projects </a>
 <br>
       <a href='/'> Home </a>
 </body>

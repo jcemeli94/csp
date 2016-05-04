@@ -15,14 +15,14 @@
     <li>
     <a href="{% url "cspapp:projects_detail" project.id%}"> {{project.name}} </a>
 
-    </li><a class="marge" href="{% url 'delete_project' project.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a>
+    <!-- </li><a class="marge" href="{% url 'delete_project' project.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a> -->
 
     {% endfor %}
     </ul>
     {% else %}
     <p style="text-indent: 2em">Any project yet</p>
     {% endif %}
-
+    <a href='/'> Home </a>
      {% endblock %}
     <br>
       <a href='/'> Home </a>
