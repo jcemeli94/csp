@@ -21,4 +21,12 @@ urlpatterns = [
             template_name='cspapp/form.html',
             form_class=ProjectForm),
         name='project_edit'),
+
+    url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/comment/$',
+        CommentList.as_view(),
+        name='comment_list'),
+
+    url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/comment/create/$',
+        CommentCreate.as_view(),
+        name='comment_project'),
 ]

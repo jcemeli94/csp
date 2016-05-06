@@ -29,9 +29,17 @@
     </li>
 </head>
 <body>
-<br>
-<a href='/cspapp/projects/'> More projects </a>
-<br>
-      <a href='/'> Home </a>
+    {% for comment in object.comments %}
+        <h4>{{ comment.body }}</h4>
+    {% empty %}
+        <h4>No hi ha comentaris per aquest projecte encara</h4>
+    {% endfor %}
+
+    <a href="{% url 'cspapp:comment_project' object.id %}">Coment</a>
+    <br>
+    <br>
+    <a href='/cspapp/projects/'> More projects </a>
+    <br>
+    <a href='/'> Home </a>
 </body>
 </html>

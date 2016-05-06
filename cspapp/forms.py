@@ -3,6 +3,11 @@ from models import *
 from django import forms
 
 
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ('author', 'project',)
+
 
 class ProjectForm(ModelForm):
     class Meta:

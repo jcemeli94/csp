@@ -10,7 +10,6 @@ from django.conf import settings
 from annoying.fields import AutoOneToOneField
 
 
-# Create your models here.
 class All_users(models.Model):
     user = AutoOneToOneField(User, primary_key=True)
     category = models.TextField(null=True)
@@ -47,5 +46,18 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         return reverse('cspapp:projects_detail', kwargs={'pk': self.pk})
+
+
+class Comment (models.Model):
+    author = models.TextField()
+    body = models.TextField()
+    project = models.IntegerField(Project)
+
+    def __unicode__(self):
+        return u"%s" % self.id
+
+    def get_absolute_url(self):
+        return reverse('cspapp:comment_project', kwargs={'pk': self.pk})
+
 
 

@@ -5,3 +5,4 @@ from models import *
 admin.site.register(All_users)
 admin.site.register(Project)
 admin.site.register(Department)
+admin.site.register(Comment)

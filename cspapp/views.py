@@ -41,3 +41,20 @@ def delete_project(request,rest_pk):
     delRest= Project.objects.get(pk=rest_pk)
     delRest.delete()
     return redirect('http://127.0.0.1:8000/cspapp/projects/')
+
+
+class CommentCreate (CreateView):
+    models = Comment
+    template_name = 'cspapp/form.html'
+    form_class = CommentForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(CommentCreate, self).form_valid(form)
+
+
+class CommentList(ListView):
+    model = Comment
+    queryset = Comment.objects.all()
+    context_object_name = 'comments'
+    template_name = 'cspapp/comment_list.html'
