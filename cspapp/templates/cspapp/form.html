@@ -1,4 +1,20 @@
+
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <br>
+    <br>
 <title>Project creation</title>
+    <h1 align="center"> Citizen Science Platform UDL</h1>
+
+    <br>
+    <br>
+    <br>
+    <hr>
 {% block content %}
     <form method="post" enctype="multipart/form-data" action="">
         {% csrf_token %}
