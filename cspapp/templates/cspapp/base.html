@@ -5,10 +5,20 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<body>
     <meta charset="UTF-8">
+    <br>
+    <br>
     <title>Title</title>
     <h1 align="center"> Citizen Science Platform UDL</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
     {% block header %}
     {% if user.username %}
         <p style="text-align: right;">You are logged as: <b>{{ user.username }} </b>| <a href="{% url 'logout' %}?next={{request.path}}">logout</a></p>
@@ -21,7 +31,7 @@
 
     <p style="text-align: right;"><a href="http://127.0.0.1:8000/admin">Admin</a></p>
 
-</head>
+</body>
 
 {% block project_list %}
 <h2><ul><a href="/cspapp/projects">Projects list</a></ul></h2>
