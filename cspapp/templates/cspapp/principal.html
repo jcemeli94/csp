@@ -1,20 +1,19 @@
 
 {% load staticfiles %}
 
+<head>
 <link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+</head>
 
 <!DOCTYPE html>
 <html lang="en">
 <body>
     <meta charset="UTF-8">
-    <br>
-    <br>
+
     <title>Principal</title>
-    <h1 align="center"> Citizen Science Platform UDL</h1>
-    <br>
-    <br>
-    <br>
+    <h1> Citizen Science Platform UDL</h1>
     <hr>
+
     {% block header %}
     {% if user.username %}
         <p style="text-align: right;">You are logged as: <b>{{ user.username }} </b>| <a href="{% url 'logout' %}?next={{request.path}}">logout</a></p>
