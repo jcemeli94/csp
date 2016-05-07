@@ -2,7 +2,24 @@
         <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
 
-    <h2> Citizen Science Platform login </h2>
+
+{% load staticfiles %}
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <meta charset="UTF-8">
+<header>
+    <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
+    <h1> Citizen Science Platform UDL</h1>
+    <hr>
+</header>
+
 
     <form method="post" action="{% url 'login' %}">
         <table>
