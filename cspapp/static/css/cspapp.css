@@ -3,9 +3,9 @@
      h1 {
          color: navy;
          font-size: 3em;
-         padding-top: 80px;
+         padding-top: 10px;
          padding-left: 500px;
-         padding-bottom: 90px;}
+         padding-bottom: 140px;}
 
     body {
     background:url("images/PBA&Q_Group_wall_paper_02.jpg") no-repeat center center fixed;
@@ -14,4 +14,13 @@
     -o-background-size: cover;
     background-size:100% 100%;
     }
+
+    aside {
+            line-height:30px;
+            background-color:#01DFD7;
+            height:180px;
+            width:100px;
+            float:right;
+            padding:5px;
+           }
 
