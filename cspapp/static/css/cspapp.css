@@ -3,16 +3,23 @@
      h1 {
          color: navy;
          font-size: 3em;
-         padding-top: 10px;
          padding-left: 500px;
-         padding-bottom: 140px;}
+         padding-bottom: 10px;
+     }
 
     body {
-    background:url("images/PBA&Q_Group_wall_paper_02.jpg") no-repeat center center fixed;
+    background:url("images/PBA&Q_Group_wall_paper_03.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size:100% 100%;
+    }
+
+    div {
+        width: 320px;
+        padding: 10px;
+        border: hidden;
+        margin: 0;
     }
 
     aside {
@@ -22,5 +29,5 @@
             width:100px;
             float:right;
             padding:5px;
-           }
+    }
 
