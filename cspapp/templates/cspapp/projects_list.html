@@ -10,7 +10,7 @@
     </h2>
 
      {% if projects %}
-    <ul>
+    <ul id="projectlist">
     {% for project in projects %}
     <li>
     <a href="{% url "cspapp:projects_detail" project.id%}"> {{project.name}} </a>
