@@ -21,6 +21,8 @@ class PostForm(forms.ModelForm):
             model = User
             fields = ('username','password','email',)
 
+
+
 #NO SE USA EN EL REGISTER, SERVIRA PARA INSERTAR POSTS
 
 

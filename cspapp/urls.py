@@ -29,4 +29,8 @@ urlpatterns = [
     url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/comment/create/$',
         CommentCreate.as_view(),
         name='comment_project'),
+
+    url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/reviews/create/$',
+        review,
+        name='review_create'),
 ]

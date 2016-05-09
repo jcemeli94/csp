@@ -7,6 +7,10 @@ from django.views.generic.edit import CreateView
 from forms import *
 from models import *
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
+from django.utils import timezone
 
 # Create your views here.
 
@@ -25,6 +29,11 @@ class ProjectsDetail(DetailView):
     model = Project
     context_object_name = 'project'
     template_name = 'cspapp/projects_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectsDetail, self).get_context_data(**kwargs)
+        context['RATING_CHOICES'] = ProjectReview.RATING_CHOICES
+        return context
 
 
 class ProjectCreate(CreateView):
@@ -58,3 +67,14 @@ class CommentList(ListView):
     queryset = Comment.objects.all()
     context_object_name = 'comments'
     template_name = 'cspapp/comment_list.html'
+
+
+def review(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    review = ProjectReview(
+        rating=request.POST['rating'],
+        comment=request.POST['comment'],
+        user=request.user,
+        project=project)
+    review.save()
+    return HttpResponseRedirect(reverse('cspapp:projects_detail', args=(project.id,)))

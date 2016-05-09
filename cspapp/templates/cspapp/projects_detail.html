@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
 <header>
     <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
-    <h1> Citizen Science Platform UDL</h1>
+    <h1><a href="/">Citizen Science Platform UDL</a></h1>
     <hr>
 </header>
 
@@ -35,24 +35,45 @@
         <b>Description:</b> {{ object.description }}
       </li>
     <li>
-        <b>Department:</b> {{ object.department }}
+        <b>Department:</b> {{ object.department.name }}
     </li>
     <li>
         <b>Developers:</b> {{ object.developers }}
     </li>
     <li>
         <b>Link:</b>
-        <a href="{{object.website}}" target="_blank"  > {{object.link}} </a>
+        <a href="{{object.link}}" target="_blank"  > {{object.link}} </a>
     </li>
 </head>
 <body>
-    {% for comment in object.comments %}
-        <h4>{{ comment.body }}</h4>
-    {% empty %}
-        <h4>No hi ha comentaris per aquest projecte encara</h4>
+
+<h4>Add Comment</h4>
+<form action="{% url 'cspapp:review_create' project.id %}" method="post">
+    {% csrf_token %}
+    Message: <textarea name="comment" id="comment" rows="4"></textarea>
+    <p>Rating:</p>
+    <p>{% for rate in RATING_CHOICES %}
+    <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{ rate.0 }}" />
+    <label for="choice{{ forloop.counter }}">{{ rate.1 }} star{{ rate.0|pluralize }}</label>
+    <br/>{% endfor %}
+    </p>
+    <input type="submit" value="Review" />
+</form>
+
+    {% for review in object.projectreview_set.all %}
+        <li>
+            <p>--------------------------------------------------------</p>
+            <p><b>{{ review.user }}:</b></p>
+            <p style="text-indent: 2em"><b> Rating: </b>{{ review.rating }} star{{ review.rating|pluralize }}</p>
+            <p style="text-indent: 2em"><b> Comment: </b>{{ review.comment }}</p>
+            <p>Created by {{ review.user }} on {{ review.date }}</p>
+            <p>--------------------------------------------------------</p>
+            <br>
+        </li>
     {% endfor %}
 
-    <a href="{% url 'cspapp:comment_project' object.id %}">Coment</a>
+
+    <!--<a href="{% url 'cspapp:comment_project' object.id %}">Coment</a>-->
     <br>
     <br>
     <a href='/cspapp/projects/'> More projects </a>
