@@ -9,7 +9,7 @@ from models import *
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.utils import timezone
 
 # Create your views here.
@@ -80,7 +80,8 @@ def review(request, pk):
     return HttpResponseRedirect(reverse('cspapp:projects_detail', args=(project.id,)))
 
 
-def delete_comment(request,rest_pk):
+def delete_comment(request, rest_pk):
     delRest= Review.objects.get(pk=rest_pk)
+    projetpk = ProjectReview.objects.get(pk=rest_pk).project
     delRest.delete()
-    return redirect('http://127.0.0.1:8000/cspapp/projects/')
+    return redirect(reverse_lazy('cspapp:projects_detail', kwargs={'pk':projetpk.id}))
