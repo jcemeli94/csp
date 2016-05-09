@@ -1,0 +1,30 @@
+{% extends "cspapp/base.html" %}
+<html>
+  <head>
+    <title> Projects </title>
+  </head>
+  <body>
+     {% block project_list %}
+          <h2 style="text-indent: 1em">Projects
+      (<a href="{% url 'cspapp:project_create' %}">add</a>)
+    </h2>
+
+     {% if projects %}
+    <ul id="projectlist">
+    {% for project in projects %}
+    <li>
+    <a href="{% url "cspapp:projects_detail" project.id%}"> {{project.name}} </a>
+
+    <!-- </li><a class="marge" href="{% url 'delete_project' project.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a> -->
+
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p style="text-indent: 2em">Any project yet</p>
+    {% endif %}
+    <a href='/'> Home </a>
+     {% endblock %}
+    <br>
+      <a href='/'> Home </a>
+  </body>
+</html>

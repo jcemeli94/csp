@@ -1,0 +1,87 @@
+
+{% load staticfiles %}
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <meta charset="UTF-8">
+<header>
+    <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
+    <h1><a href="/">Citizen Science Platform UDL</a></h1>
+    <hr>
+</header>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{project.name}}</title>
+    <h2>{{project.name}}
+
+        {% if project.developers_id == request.user.id %}
+            (<a href="{% url 'cspapp:project_edit' object.id %}">edit</a>)
+            (<a class="marge" href="{% url 'delete_project' project.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a>)
+        {% endif %}
+    </h2>
+
+    {%	if	project.image	%}
+        <p><img	src="{{project.image.url}}" width="300px"/></p>
+    {%	endif	%}
+    <li>
+        <b>Description:</b> {{ object.description }}
+      </li>
+    <li>
+        <b>Department:</b> {{ object.department.name }}
+    </li>
+    <li>
+        <b>Developers:</b> {{ object.developers }}
+    </li>
+    <li>
+        <b>Link:</b>
+        <a href="{{object.link}}" target="_blank"  > {{object.link}} </a>
+    </li>
+</head>
+<body>
+
+<h4>Add Comment</h4>
+<form action="{% url 'cspapp:review_create' project.id %}" method="post">
+    {% csrf_token %}
+    Message: <textarea name="comment" id="comment" rows="4"></textarea>
+    <p>Rating:</p>
+    <p>{% for rate in RATING_CHOICES %}
+    <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{ rate.0 }}" />
+    <label for="choice{{ forloop.counter }}">{{ rate.1 }} star{{ rate.0|pluralize }}</label>
+    <br/>{% endfor %}
+    </p>
+    <input type="submit" value="Review" />
+</form>
+
+    {% for review in object.projectreview_set.all %}
+        <li>
+            <p>--------------------------------------------------------</p>
+            <p><b>{{ review.user }}:</b>
+            {% if user.username == "moderator" %}
+                <a href="{% url 'delete_comment' review.id %}">Delete</a>
+            {%  endif %}
+            </p>
+            <p style="text-indent: 2em"><b> Rating: </b>{{ review.rating }} star{{ review.rating|pluralize }}</p>
+            <p style="text-indent: 2em"><b> Comment: </b>{{ review.comment }}</p>
+            <p>Created by {{ review.user }} on {{ review.date }}</p>
+            <p>--------------------------------------------------------</p>
+            <br>
+        </li>
+    {% endfor %}
+
+
+    <!--<a href="{% url 'cspapp:comment_project' object.id %}">Coment</a>-->
+    <br>
+    <br>
+    <a href='/cspapp/projects/'> More projects </a>
+    <br>
+    <a href='/'> Home </a>
+</body>
+</html>

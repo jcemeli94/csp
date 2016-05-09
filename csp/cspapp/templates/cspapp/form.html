@@ -1,0 +1,32 @@
+
+
+{% load staticfiles %}
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Project creation</title>
+
+    <meta charset="UTF-8">
+<header>
+    <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
+    <h1><a href="/">Citizen Science Platform UDL</a></h1>
+    <hr>
+</header>
+
+<body>
+
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit"/>
+    </form>
+{% endblock %}
