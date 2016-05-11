@@ -22,6 +22,10 @@ class PostForm(forms.ModelForm):
             fields = ('username','password','email',)
 
 
+class ActivityForm(forms.ModelForm):
+    class Meta:
+        model = Activity
+        fields = ('user','date',)
 
 #NO SE USA EN EL REGISTER, SERVIRA PARA INSERTAR POSTS
 
