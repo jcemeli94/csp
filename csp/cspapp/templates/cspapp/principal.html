@@ -1,0 +1,47 @@
+
+{% load staticfiles %}
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <title>Citizen Science Platform UDL</title>
+    </head>
+
+<body>
+
+    <meta charset="UTF-8">
+<header>
+    <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
+    <h1>Citizen Science Platform UDL</h1>
+    <hr>
+</header>
+
+<nav>
+<ul id="sidebar">
+    {% block header %}
+        {% if user.username %}
+            <li id="greyfonts">Logged as: <b>{{ user.username }} </b>| <a id="greyfonts" href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
+        {% else %}
+            <li><a id="greyfonts" href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+            <li><a id="greyfonts" href="{% url 'register' %}"  class="top-menu">Sign up<span class="glyphicon glyphicon-plus"></span></a>
+        {% endif %}
+    {% endblock %}
+
+    <li><a id="greyfonts" href="http://127.0.0.1:8000/admin">Admin</a></li>
+</ul>
+</nav>
+
+<section>
+    {% block project_list %}
+    <h2><a href="/cspapp/projects">Projects list</a></h2>
+    {% endblock %}
+</section>
+
+</body>
+
+</html>
