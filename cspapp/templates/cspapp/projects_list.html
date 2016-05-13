@@ -5,9 +5,9 @@
   </head>
   <body>
      {% block project_list %}
-          <h2 style="text-indent: 1em">Projects
-      (<a href="{% url 'cspapp:project_create' %}">add</a>)
-    </h2>
+     <h2 style="text-indent: 1em">Projects
+       (<a href="{% url 'cspapp:project_create' %}">add</a>)
+     </h2>
 
      {% if projects %}
     <ul id="projectlist">

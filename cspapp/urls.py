@@ -22,13 +22,21 @@ urlpatterns = [
             form_class=ProjectForm),
         name='project_edit'),
 
-    url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/comment/$',
-        CommentList.as_view(),
-        name='comment_list'),
+    url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/activities/$',
+        ActivityList.as_view(),
+        name='activity_list'),
 
-    url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/comment/create/$',
-        CommentCreate.as_view(),
-        name='comment_project'),
+    url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/activities/create/$',
+        ActivityCreate.as_view(),
+        name='activity_create'),
+
+    url(r'^activities/(?P<pk>[a-zA-Z0-9 ]+)/$',
+        ActivityDetail.as_view(),
+        name='activities_detail'),
+
+    url(r'^activities/(?P<pk>[a-zA-Z0-9 ]+)/create/$',
+        answer,
+        name='answer_create'),
 
     url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/reviews/create/$',
         review,

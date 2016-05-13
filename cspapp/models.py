@@ -71,3 +71,33 @@ class Review(models.Model):
 
 class ProjectReview(Review):
     project = models.ForeignKey(Project)
+
+
+class Activity(models.Model):
+    title = models.TextField()
+    description = models.TextField(blank=True, null=True)
+    statement = models.TextField()
+    user = models.ForeignKey(User, default=1)
+    date = models.DateField(default=date.today)
+
+    def __unicode__(self):
+        return u"%s" % self.id
+
+    def get_absolute_url(self):
+        return reverse('cspapp:activities_detail', kwargs={'pk': self.pk})
+
+
+class ProjectActivity(Activity):
+    project = models.ForeignKey(Project)
+    creator = models.ForeignKey(User, default=1)
+
+
+class Answer(models.Model):
+    body = models.TextField()
+    user = models.ForeignKey(User, default=1)
+    date = models.DateField(default=date.today)
+
+
+class ActivityAnswer(Answer):
+    project = models.ForeignKey(Activity)
+    creator = models.ForeignKey(User, default=1)

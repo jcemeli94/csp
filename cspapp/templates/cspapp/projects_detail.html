@@ -63,7 +63,11 @@
     {% for review in object.projectreview_set.all %}
         <li>
             <p>--------------------------------------------------------</p>
-            <p><b>{{ review.user }}:</b></p>
+            <p><b>{{ review.user }}:</b>
+            {% if user.username == "moderator" %}
+                <a href="{% url 'delete_comment' review.id %}">Delete</a>
+            {%  endif %}
+            </p>
             <p style="text-indent: 2em"><b> Rating: </b>{{ review.rating }} star{{ review.rating|pluralize }}</p>
             <p style="text-indent: 2em"><b> Comment: </b>{{ review.comment }}</p>
             <p>Created by {{ review.user }} on {{ review.date }}</p>
@@ -73,8 +77,8 @@
     {% endfor %}
 
 
-    <!--<a href="{% url 'cspapp:comment_project' object.id %}">Coment</a>-->
     <br>
+    <a href="{% url 'cspapp:activity_list' object.id %}">Activities</a>
     <br>
     <a href='/cspapp/projects/'> More projects </a>
     <br>
