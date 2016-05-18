@@ -1,0 +1,84 @@
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ activity.title }}</title>
+</head>
+<body>
+<div id="header">
+    <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
+    <h1><a href="/">UDL Citizen Science Platform</a></h1>
+</div>
+    <br>
+    <hr>
+
+<nav>
+<ul id="sidebar">
+    <li><a id="greyfonts" href='/'> Home </a></li>
+    <hr>
+    <li><a id="greyfonts" href='/cspapp/projects/'> More projects </a></li>
+    <hr>
+    <li id="greyfonts"> Back to: </li>
+    <li><a id="greyfonts" href="{% url "cspapp:projects_detail" activity.project%}"> {{ activity.project.name }} </a></li>
+</ul>
+</nav>
+
+<div id="content">
+    <h2> {{ activity.project.name }} </h2>
+    <h2>{{ activity.title }}
+        {%  if user == activity.user  %}
+            (<a href="{% url 'cspapp:activity_edit' object.id %}">edit</a>)
+            (<a class="marge" href="{% url 'delete_activity' object.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a>)
+        {% endif %}
+    </h2>
+    <h3>{{ activity.description }}</h3>
+    <p>{{ activity.statement }}</p>
+
+    <form action="{% url 'cspapp:answer_create' activity.id %}" method="post">
+    {% csrf_token %}
+    Answer: <textarea name="comment" id="comment" rows="8" cols="50"></textarea>
+
+    </p>
+    <input type="submit" value="Answer" />
+
+    <p>Author: {{ activity.user }}</p>
+    </form>
+
+    <h2 id="stdnavy">Answers</h2>
+
+    <table>
+      <tr>
+        <th>User</th>
+        <th>Answer</th>
+        <th>Date</th>
+      </tr>
+
+        {% for answer in object.activityanswer_set.all %}
+
+            <tr>
+            {%  if user.id == answer.user_id or user == activity.user  %}
+                <td style="width:150px">
+                    <p><b>{{ answer.user }}:</b>
+                    {% if user == answer.user %}
+                        <a href="{% url 'delete_answer' answer.id %}">Delete</a>
+                    {%  endif %}
+                    </p></td>
+                    <td style="width:500px"><p>{{ answer.body }}</p></td>
+                    <td style="width:100px"><p>{{ answer.date }}</p></td>
+                    <br>
+                </td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    <p>&#169; PBA&Q Group</p>
+
+</div>
+</body>
+</html>
