@@ -19,13 +19,13 @@ class PostForm(forms.ModelForm):
 
         class Meta:
             model = User
-            fields = ('username','password','email',)
+            fields = ('username', 'password' ,'email',)
 
 
 class ActivityForm(forms.ModelForm):
     class Meta:
-        model = Activity
-        fields = ('user','date',)
+        model = ProjectActivity
+        exclude = ('user', 'date', 'creator',)
 
 #NO SE USA EN EL REGISTER, SERVIRA PARA INSERTAR POSTS
 

@@ -25,6 +25,8 @@ urlpatterns = [
 
     url(r'^delete_project/(?P<rest_pk>\d+)/$', views.delete_project, name='delete_project'),
     url(r'^delete_comment/(?P<rest_pk>\d+)/$', views.delete_comment, name='delete_comment'),
+    url(r'^delete_activity/(?P<rest_pk>\d+)/$', views.delete_activity, name='delete_activity'),
+    url(r'^delete_answer/(?P<rest_pk>\d+)/$', views.delete_answer, name='delete_answer'),
 
 ]
 

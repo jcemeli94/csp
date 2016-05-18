@@ -1,42 +1,57 @@
-    {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
-
 
 {% load staticfiles %}
-
-<head>
 <link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
-</head>
+
 
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
+
+    <head>
+    <title>Login Citizen Science Platform UDL</title>
+    </head>
+
 <body>
 
-    <meta charset="UTF-8">
-<header>
+<div id="header">
     <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
-    <h1> Citizen Science Platform UDL</h1>
-    <hr>
-</header>
+    <h1>UDL Citizen Science Platform</h1>
+</div>
+<br>
+<hr>
 
+<nav>
+<ul id="sidebar">
+    <li><a id="greyfonts" href='/'> Home </a></li>
+</ul>
+</nav>
+
+<div id="content">
+
+        {% if form.errors %}
+        <h3><mark> Your username and password didn't match. Please try again.</mark></h3>
+        {% endif %}
+
+
+<h2 id="stdnavy">Login form</h2>
 
     <form method="post" action="{% url 'login' %}">
-        <table>
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-            <tr>
-                <td><input type="hidden" name="next" value="{{ next }}"/></td>
-            </tr>
-        </table>
 
-        <input type="submit" value="login" />
+
+                <p>{{ form.username.label_tag }}
+                {{ form.username }}</p>
+
+
+                <p>{{ form.password.label_tag }}
+                {{ form.password }}</p>
+
+
+                <input type="hidden" name="next" value="{{ next }}"/>
+
+
+
+       <p> <input type="submit" value="login" /></p>
 
         {% csrf_token %}
     </form>
+</div>

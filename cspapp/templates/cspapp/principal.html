@@ -1,47 +1,61 @@
 
 {% load staticfiles %}
-
-<head>
 <link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
-</head>
 
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
 
     <head>
-    <title>Citizen Science Platform UDL</title>
+    <title>Principal Citizen Science Platform UDL</title>
     </head>
 
 <body>
 
-    <meta charset="UTF-8">
-<header>
+<div id="header">
     <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
-    <h1><a href="/">Citizen Science Platform UDL</a></h1>
+    <h1>UDL Citizen Science Platform</h1>
+</div>
+    <br>
     <hr>
-</header>
 
 <nav>
 <ul id="sidebar">
     {% block header %}
         {% if user.username %}
-            <li id="greyfonts">Logged as: <b>{{ user.username }} </b>| <a id="greyfonts" href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
+            <li id="greyfonts">Logged as: <b>{{ user.username }} </b> <a id="greyfonts" href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
         {% else %}
             <li><a id="greyfonts" href="{% url 'login' %}?next={{request.path}}">Login</a></li>
-            <li><a id="greyfonts" href="{% url 'register' %}"  class="top-menu">Sign up<span class="glyphicon glyphicon-plus"></span></a>
+            <li><a id="greyfonts" href="{% url 'register' %}"  class="top-menu">Sign up<span class="glyphicon glyphicon-plus"></span></a></li>
         {% endif %}
     {% endblock %}
 
     <li><a id="greyfonts" href="http://127.0.0.1:8000/admin">Admin</a></li>
+    <hr>
+    <li><a id="greyfonts" href="/cspapp/projects">Projects list</a></li>
 </ul>
 </nav>
 
-<section>
-    {% block project_list %}
-    <h2><a href="/cspapp/projects">Projects list</a></h2>
-    {% endblock %}
-</section>
+<div id="content">
+
+    <img src="/static/css/images/eps.png" alt="UDL Icon" >
+    <p></p>
+    <h2 id="stdnavy">Welcome to UDL Citizen Science Platform (CSP)</h2>
+      <div class="transbox">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin laoreet tortor at orci placerat tincidunt. Fusce malesuada magna ac nunc tempor, in faucibus ligula convallis. Nunc ac erat varius, consequat lorem et, egestas est. Donec ultrices ligula eu rhoncus hendrerit. Proin nec lorem pharetra, hendrerit magna quis, condimentum mi. Nam risus elit, auctor sit amet rutrum sed, lacinia vitae velit. Maecenas ac consectetur lectus. Aenean id ipsum iaculis nunc placerat interdum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+
+        Praesent mattis pharetra justo, ut scelerisque diam lobortis et. Donec a nunc eros. Integer pharetra fringilla massa ac consequat. Maecenas laoreet varius viverra. Aliquam erat volutpat. Pellentesque augue velit, volutpat ac consectetur ac, tempus vel ligula. Maecenas enim turpis, ornare quis placerat et, ultricies eu nulla. Aliquam sed erat in urna euismod fermentum. Donec ut lacus non ex maximus eleifend. Maecenas congue nibh ac dapibus dignissim. Quisque pulvinar felis sit amet felis lacinia consequat. Etiam mattis cursus lobortis. Nulla lobortis nibh vitae est consequat, in vestibulum libero suscipit.
+
+        Mauris sagittis lacus at mollis egestas. Maecenas vehicula a augue ac aliquam. Maecenas interdum ante sit amet sollicitudin gravida. Pellentesque sit amet venenatis lorem, a pellentesque sapien. Donec placerat non turpis eu facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi velit turpis, fermentum non scelerisque ac, consequat in ipsum. Duis vel rutrum ligula. Integer at cursus justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc mattis nisl quam, id accumsan arcu feugiat sed. Duis ac faucibus elit. Etiam consectetur erat eleifend est ornare feugiat. Maecenas sed orci nulla. Sed ultricies tempus fermentum. Sed a pulvinar leo.
+
+        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla non felis egestas felis aliquam luctus. Aenean id consectetur erat, vel aliquet diam. Ut at neque risus. Quisque luctus imperdiet magna et viverra. Vestibulum rutrum dui vel erat posuere cursus in non dolor. Mauris malesuada, purus ac vulputate hendrerit, nisi velit ultrices odio, quis sagittis turpis tortor sit amet mi. Nunc augue risus, ultrices convallis sollicitudin ac, auctor finibus diam. Curabitur quis sodales lacus. Curabitur rutrum purus id venenatis porta. Curabitur convallis, velit vel pellentesque aliquet, ligula quam sollicitudin quam, sit amet scelerisque lacus magna malesuada orci. Phasellus maximus ipsum ut augue egestas, eget finibus purus efficitur. Ut vehicula ligula fringilla iaculis molestie. Integer imperdiet dui semper, iaculis lorem sit amet, vulputate dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus mauris libero, ultrices id ligula at, sodales sollicitudin metus.
+
+        In efficitur cursus magna, sed bibendum elit ultrices pulvinar. Donec vestibulum id mauris quis ornare. Nulla eu dui vel ligula fermentum euismod et nec velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum quis lorem malesuada nisl aliquet tincidunt nec a purus. Duis quam justo, luctus a erat sed, feugiat laoreet velit. Curabitur cursus urna a tincidunt venenatis. Quisque eleifend elit pretium odio sollicitudin, in dignissim tortor mattis. Nullam maximus consequat risus, ac tempus lectus suscipit in. Vestibulum quis euismod nisi.</p>
+
+      </div>
+<p>&#169; PBA&Q Group</p>
+
+</div>
 
 </body>
-
 </html>

@@ -1,26 +1,31 @@
 
-
 {% load staticfiles %}
-
-<head>
 <link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
-</head>
 
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
 
-<title>Project creation</title>
-
-    <meta charset="UTF-8">
-<header>
-    <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
-    <h1><a href="/">Citizen Science Platform UDL</a></h1>
-    <hr>
-</header>
+<head>
+    <title>Project creation</title>
+</head>
 
 <body>
 
+<div id="header">
+    <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
+    <h1><a href="/">UDL Citizen Science Platform</a></h1>
+</div>
+    <br>
+    <hr>
 
+<nav>
+<ul id="sidebar">
+    <li><a id="greyfonts" href='/'> Home </a></li>
+</ul>
+</nav>
+
+<div id="content">
 {% block content %}
     <form method="post" enctype="multipart/form-data" action="">
         {% csrf_token %}
@@ -30,3 +35,4 @@
         <input type="submit" value="Submit"/>
     </form>
 {% endblock %}
+</div>

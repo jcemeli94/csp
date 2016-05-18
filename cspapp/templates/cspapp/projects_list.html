@@ -5,7 +5,7 @@
   </head>
   <body>
      {% block project_list %}
-     <h2 style="text-indent: 1em">Projects
+     <h2 id="stdnavy">Projects
        (<a href="{% url 'cspapp:project_create' %}">add</a>)
      </h2>
 
@@ -14,6 +14,7 @@
     {% for project in projects %}
     <li>
     <a href="{% url "cspapp:projects_detail" project.id%}"> {{project.name}} </a>
+    </li>
 
     <!-- </li><a class="marge" href="{% url 'delete_project' project.id %}" class="top-menu">Delete  <span class="glyphicon glyphicon-minus"></span></a> -->
 

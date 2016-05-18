@@ -1,26 +1,42 @@
 
 {% load staticfiles %}
-
-<head>
 <link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
-</head>
 
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
+
+    <head>
+    <title>Pro. Details Base Citizen Science Platform UDL</title>
+    </head>
+
 <body>
 
-    <meta charset="UTF-8">
-<header>
+<div id="header">
     <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
-    <h1><a href="/">Citizen Science Platform UDL</a></h1>
+    <h1><a href="/">UDL Citizen Science Platform</a></h1>
+</div>
+    <br>
     <hr>
-</header>
+
+<nav>
+<ul id="sidebar">
+    <li><a id="greyfonts" href='/'> Home </a></li>
+    <li><a id="greyfonts" href='/cspapp/projects/'> More projects </a></li>
+    <li><a id="greyfonts" href="{% url 'cspapp:activity_create' object.id %}">Add Activities</a></li>
+    <hr>
+     <li id="greyfonts"> Activities: </li>
 
 
-<head>
-    <meta charset="UTF-8">
+    {% for activity in object.projectactivity_set.all %}
+        <li><a id="greyfonts" href="{% url "cspapp:activities_detail" activity.id%}"> {{activity.title}} </a></li>
+    {% endfor %}
+</ul>
+</nav>
+
+<div id="content">
     <title>{{project.name}}</title>
-    <h2>{{project.name}}
+    <h2 id="stdnavy">{{project.name}}
 
         {% if project.developers_id == request.user.id %}
             (<a href="{% url 'cspapp:project_edit' object.id %}">edit</a>)
@@ -31,23 +47,14 @@
     {%	if	project.image	%}
         <p><img	src="{{project.image.url}}" width="300px"/></p>
     {%	endif	%}
-    <li>
-        <b>Description:</b> {{ object.description }}
-      </li>
-    <li>
-        <b>Department:</b> {{ object.department.name }}
-    </li>
-    <li>
-        <b>Developers:</b> {{ object.developers }}
-    </li>
-    <li>
-        <b>Link:</b>
-        <a href="{{object.link}}" target="_blank"  > {{object.link}} </a>
-    </li>
-</head>
-<body>
+    <li id="stdnavy"> <b>Description:</b> {{ object.description }} </li>
+    <li id="stdnavy"> <b>Department:</b> {{ object.department.name }} </li>
+    <li id="stdnavy"> <b>Developers:</b> {{ object.developers }} </li>
+    <li id="stdnavy"> <b>Link:</b> <a href="{{object.link}}" target="_blank"  > {{object.link}} </a> </li>
 
-<h4>Add Comment</h4>
+
+
+<h4 id="stdnavy">Add Comment</h4>
 <form action="{% url 'cspapp:review_create' project.id %}" method="post">
     {% csrf_token %}
     Message: <textarea name="comment" id="comment" rows="4"></textarea>
@@ -60,28 +67,35 @@
     <input type="submit" value="Review" />
 </form>
 
+<h2 id="stdnavy">Comments</h2>
+
+<table>
+  <tr>
+    <th>Writer</th>
+    <th>&#9733;</th>
+    <th>Comment</th>
+    <th>Date</th>
+  </tr>
+
     {% for review in object.projectreview_set.all %}
-        <li>
-            <p>--------------------------------------------------------</p>
-            <p><b>{{ review.user }}:</b>
-            {% if user.username == "moderator" %}
-                <a href="{% url 'delete_comment' review.id %}">Delete</a>
-            {%  endif %}
-            </p>
-            <p style="text-indent: 2em"><b> Rating: </b>{{ review.rating }} star{{ review.rating|pluralize }}</p>
-            <p style="text-indent: 2em"><b> Comment: </b>{{ review.comment }}</p>
-            <p>Created by {{ review.user }} on {{ review.date }}</p>
-            <p>--------------------------------------------------------</p>
-            <br>
-        </li>
+
+         <tr>
+         <td style="width:100px">{{ review.user }}
+         {% if user.username == "moderator" or review.user == user%}
+             <a href="{% url 'delete_comment' review.id %}">Delete</a>
+         {%  endif %}
+         </td>
+         <td style="width:50px"; align="center">{{ review.rating }}</td>
+         <td style="width:400px">{{ review.comment }}</td>
+         <td style="width:100px">{{ review.date }}</td>
+        </tr>
+
     {% endfor %}
 
+</table>
 
-    <br>
-    <a href="{% url 'cspapp:activity_list' object.id %}">Activities</a>
-    <br>
-    <a href='/cspapp/projects/'> More projects </a>
-    <br>
-    <a href='/'> Home </a>
+<p>&#169; PBA&Q Group</p>
+
+</div>
 </body>
 </html>

@@ -1,22 +1,32 @@
 
 {% load staticfiles %}
-
-<head>
 <link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
-</head>
 
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
+
+    <head>
+    <title>Register Base Citizen Science Platform</title>
+    </head>
+
 <body>
 
-    <meta charset="UTF-8">
-<header>
+<div id="header">
     <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
-    <h1> Citizen Science Platform UDL</h1>
+    <h1>UDL Citizen Science Platform</h1>
+</div>
+    <br>
     <hr>
-</header>
 
-<h2> User register </h2>
+<nav>
+<ul id="sidebar">
+    <li><a id="greyfonts" href='/'> Home </a></li>
+</ul>
+</nav>
+
+<div id="content">
+<h2 id="stdnavy"> User register </h2>
 
    <form action="" method="post">
       {{ form.as_p }}
@@ -25,3 +35,4 @@
 
         {% csrf_token %}
     </form>
+</div>

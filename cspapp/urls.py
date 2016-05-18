@@ -34,6 +34,13 @@ urlpatterns = [
         ActivityDetail.as_view(),
         name='activities_detail'),
 
+    url(r'^activities/(?P<pk>[a-zA-Z0-9 ]+)/edit$',
+        UpdateView.as_view(
+            model=ProjectActivity,
+            template_name='cspapp/form.html',
+            form_class=ActivityForm),
+        name='activity_edit'),
+
     url(r'^activities/(?P<pk>[a-zA-Z0-9 ]+)/create/$',
         answer,
         name='answer_create'),

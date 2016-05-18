@@ -53,7 +53,7 @@ def delete_project(request,rest_pk):
 
 
 class ActivityDetail(DetailView):
-    model = Activity
+    model = ProjectActivity
     context_object_name = 'activity'
     template_name = 'cspapp/activity_detail.html'
 
@@ -63,12 +63,12 @@ class ActivityDetail(DetailView):
 
 
 class ActivityCreate (CreateView):
-    models = Activity
+    models = ProjectActivity
     template_name = 'cspapp/form.html'
     form_class = ActivityForm
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.creator = self.request.user
         return super(ActivityCreate, self).form_valid(form)
 
 
@@ -126,6 +126,13 @@ def delete_comment(request, rest_pk):
 
 def delete_answer(request, rest_pk):
     ans = Answer.objects.get(pk=rest_pk)
-    activity = ActivityAnswer.objects.get(pk=rest_pk).activity
+    activity = ActivityAnswer.objects.get(pk=rest_pk).project
     ans.delete()
     return redirect(reverse_lazy('cspapp:activities_detail', kwargs={'pk':activity.id}))
+
+
+def delete_activity(request, rest_pk):
+    ans = ProjectActivity.objects.get(pk=rest_pk)
+    projetpk = ProjectActivity.objects.get(pk=rest_pk).project
+    ans.delete()
+    return redirect(reverse_lazy('cspapp:projects_detail', kwargs={'pk':projetpk.id}))
