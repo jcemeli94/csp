@@ -89,7 +89,7 @@
 
     <script>
     function myFunction(USERNAME) {
-         window.location="http://127.0.0.1:8000/profile"+"/"+USERNAME;
+         window.location="http://127.0.0.1:8000/profile"+"/"+USERNAME.id;
     }
     </script>
 
@@ -101,8 +101,8 @@
 <ul style="list-style-type:disc">
          {% for user in users %}
 
-  <li><h5>{{ user.username }}</h5></li>
 
+<li><a id="list" href="http://127.0.0.1:8000/profile/{{ user.id }}"> {{ user.username }} </a></li>
 
 
           {% endfor %}

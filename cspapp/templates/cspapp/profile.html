@@ -1,10 +1,82 @@
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Base Citizen Science Platform UDL</title>
+
+    <script
+ 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+ 	</script>
+
+ 	<link rel="stylesheet"
+ 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  	<script
+  	src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <style>
+
+	  .divisor{
+
+	      display: table;
+          margin: 0 auto;
+          margin-top: 50px;
+          width: 1572px;
+	  }
+
+	</style>
+
 </head>
+
 <body>
 
+<div id="header">
+    <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
+    <h1><a href="/">UDL Citizen Science Platform</a></h1>
+</div>
+    <br>
+    <hr>
+
+<nav>
+<ul id="sidebar">
+    <li><a id="greyfonts" href='/'> Home </a></li>
+    {% block header %}
+        {% if user.username %}
+            <li id="greyfonts"> Logged as: <b>{{ user.username }} </b></li>
+            <li><a id="greyfonts" href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
+        {% else %}
+            <li><a id="greyfonts" href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+            <li><a id="greyfonts" href="{% url 'register' %}"  class="top-menu">Sign up<span class="glyphicon glyphicon-plus"></span></a></li>
+        {% endif %}
+    {% endblock %}
+
+    <li><a id="greyfonts" href="http://127.0.0.1:8000/admin">Admin</a></li>
+</ul>
+</nav>
+
+
+ <div class="divisor">
+
+
+                <h2>Overview:</h2>
+                <h4>First name:{{ user.username }}</h4>
+                <h4>Email: {{ user.email }}</h4>
+                <h4>Joined: {{ user.date_joined }}</h4>
+                <h4>Last login: {{ user.last_login }}</h4>
+ <br />
+
+                <h2>{{ user.username }}'s projects:</h2>
+                {% for project in projects %}
+                     <h4>dddd: {{ project.name }}</h4>
+                {% endfor %}
+ <br />
+                <h2>{{ user.username }}'s activities:</h2>
+
+ </div>
 </body>
 </html>
