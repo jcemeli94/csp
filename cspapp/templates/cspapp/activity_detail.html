@@ -52,9 +52,9 @@
 
     <table>
       <tr>
-        <th>User</th>
-        <th>Answer</th>
-        <th>Date</th>
+        <th style="width:150px">User</th>
+        <th style="width:500px">Answer</th>
+        <th style="width:100px">Date</th>
       </tr>
 
         {% for answer in object.activityanswer_set.all %}
@@ -69,7 +69,6 @@
                     </p></td>
                     <td style="width:500px"><p>{{ answer.body }}</p></td>
                     <td style="width:100px"><p>{{ answer.date }}</p></td>
-                    <br>
                 </td>
             {% endif %}
             </tr>
