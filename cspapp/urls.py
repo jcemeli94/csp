@@ -7,6 +7,12 @@ urlpatterns = [
         ProjectsList.as_view(),
         name='projects_list'),
 
+    url(r'^users/$',
+        UsersList.as_view(),
+        name='users_list'),
+
+
+
     url(r'^projects/create/$',
         ProjectCreate.as_view(),
         name='project_create'),
@@ -26,6 +32,9 @@ urlpatterns = [
         ActivityList.as_view(),
         name='activity_list'),
 
+
+
+
     url(r'^projects/(?P<pk>[a-zA-Z0-9 ]+)/activities/create/$',
         ActivityCreate.as_view(),
         name='activity_create'),
@@ -33,6 +42,7 @@ urlpatterns = [
     url(r'^activities/(?P<pk>[a-zA-Z0-9 ]+)/$',
         ActivityDetail.as_view(),
         name='activities_detail'),
+
 
     url(r'^activities/(?P<pk>[a-zA-Z0-9 ]+)/edit$',
         UpdateView.as_view(

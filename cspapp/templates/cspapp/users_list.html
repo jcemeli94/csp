@@ -1,0 +1,115 @@
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cspapp.css' %}" />
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+
+<head>
+    <title>Base Citizen Science Platform UDL</title>
+
+    <script
+ 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+ 	</script>
+
+ 	<link rel="stylesheet"
+ 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  	<script
+  	src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <style>
+
+	  .divisor{
+
+	      display: table;
+          margin: 0 auto;
+          margin-top: 50px;
+	  }
+
+	</style>
+
+</head>
+
+<body>
+
+<div id="header">
+    <div> <img src="/static/css/images/Logo.jpg" align="left"> </div>
+    <h1><a href="/">UDL Citizen Science Platform</a></h1>
+</div>
+    <br>
+    <hr>
+
+<nav>
+<ul id="sidebar">
+    <li><a id="greyfonts" href='/'> Home </a></li>
+    {% block header %}
+        {% if user.username %}
+            <li id="greyfonts"> Logged as: <b>{{ user.username }} </b></li>
+            <li><a id="greyfonts" href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
+        {% else %}
+            <li><a id="greyfonts" href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+            <li><a id="greyfonts" href="{% url 'register' %}"  class="top-menu">Sign up<span class="glyphicon glyphicon-plus"></span></a></li>
+        {% endif %}
+    {% endblock %}
+
+    <li><a id="greyfonts" href="http://127.0.0.1:8000/admin">Admin</a></li>
+</ul>
+</nav>
+
+
+<script>
+        $(function(){
+            var genre = [
+                "admin",
+                "user1",
+                "user2",
+                "moderator",
+                "troll_student_XD",
+                "qwer",
+                "josep555",
+
+            ];
+            $( "#groups_auto" ).autocomplete({
+                source: genre
+            });
+
+        });
+
+
+    </script>
+
+         <div class="divisor">
+                <label for="tags">Search for user: </label>
+                <input id="groups_auto">
+                <button onclick="myFunction(groups_auto.value)">Go to profile</button>
+
+         </div>
+
+    <script>
+    function myFunction(USERNAME) {
+         window.location="http://127.0.0.1:8000/profile"+"/"+USERNAME;
+    }
+    </script>
+
+
+
+
+ <div class="divisor">
+    <h3>Users List:</h3>
+<ul style="list-style-type:disc">
+         {% for user in users %}
+
+  <li><h5>{{ user.username }}</h5></li>
+
+
+
+          {% endfor %}
+
+</ul>
+  </div>
+
+
+</body>
+</html>

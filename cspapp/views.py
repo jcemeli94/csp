@@ -17,6 +17,8 @@ from django.utils import timezone
 def mainpage(request):
     return render(request, 'cspapp/principal.html')
 
+def profile(request):
+    return render(request, 'cspapp/profile.html')
 
 class ProjectsList(ListView):
     model = Project
@@ -24,6 +26,13 @@ class ProjectsList(ListView):
     context_object_name = 'projects'
     template_name = 'cspapp/projects_list.html'
 
+
+
+class UsersList(ListView):
+    model = User
+    queryset = User.objects.all()
+    context_object_name = 'users'
+    template_name = 'cspapp/users_list.html'
 
 class ProjectsDetail(DetailView):
     model = Project
@@ -60,6 +69,7 @@ class ActivityDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ActivityDetail, self).get_context_data(**kwargs)
         return context
+
 
 
 class ActivityCreate (CreateView):
@@ -129,6 +139,9 @@ def delete_answer(request, rest_pk):
     activity = ActivityAnswer.objects.get(pk=rest_pk).project
     ans.delete()
     return redirect(reverse_lazy('cspapp:activities_detail', kwargs={'pk':activity.id}))
+
+
+
 
 
 def delete_activity(request, rest_pk):
