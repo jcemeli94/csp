@@ -18,7 +18,6 @@ def mainpage(request):
     return render(request, 'cspapp/principal.html')
 
 def profile(request):
-    users = User.objects.all()
     projects = Project.objects.all()
     return render(request, 'cspapp/profile.html', {'projects' : projects})
 

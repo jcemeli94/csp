@@ -30,6 +30,7 @@ urlpatterns = [
 
     #url(r'^get_profile/(?P<rest_pk>\d+)/$', views.get_profile, name='get_profile'),
     url(r'profile/', profile),
+
 ]
 
 if settings.DEBUG:
