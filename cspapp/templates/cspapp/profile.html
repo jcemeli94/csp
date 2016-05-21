@@ -70,12 +70,30 @@
                 <h4>Last login: {{ user.last_login }}</h4>
  <br />
 
-                <h2>{{ user.username }}'s projects:</h2>
+                <h2>{{ user.username }}'s activity in the platform:</h2>
                 {% for project in projects %}
-                     <h4>dddd: {{ project.name }}</h4>
+                    <a href="{% url "cspapp:projects_detail" project.id%}"> {{project.name}} </a>
+                    <br>
+                    {% for review in project.projectreview_set.all %}
+                        {% if user.id == review.user_id %}
+                            <p> <b>{{ user.username }}'s comment ({{ review.date }}): </b> {{ review.comment }} (score: {{ review.rating }})</p>
+                        {% endif %}
+                    {% endfor %}
+                    {% for activity in project.projectactivity_set.all %}
+                    <p style="text-indent: 3em">
+                    <a  href="{% url "cspapp:activities_detail" activity.id%}"> {{activity.title}} </a>
+                    </p>
+                        {% for answer in activity.activityanswer_set.all %}
+                            {% if user.id == answer.user_id %}
+                                <p style="text-indent: 3em"> <b>{{ user.username }}'s answer ({{ answer.date }}):</b> {{ answer.body }}</p>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    <br>
                 {% endfor %}
  <br />
-                <h2>{{ user.username }}'s activities:</h2>
+
 
  </div>
 </body>
