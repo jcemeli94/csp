@@ -28,8 +28,10 @@ urlpatterns = [
     url(r'^delete_activity/(?P<rest_pk>\d+)/$', views.delete_activity, name='delete_activity'),
     url(r'^delete_answer/(?P<rest_pk>\d+)/$', views.delete_answer, name='delete_answer'),
 
-    #url(r'^get_profile/(?P<rest_pk>\d+)/$', views.get_profile, name='get_profile'),
-    url(r'profile/', profile),
+    url(r'^profile/(?P<rest_pk>\d+)/$', views.profile, name='profile'),
+    #url(r'profile/', profile),
+
+
 
 ]
 
