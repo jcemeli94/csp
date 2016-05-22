@@ -17,10 +17,15 @@ from django.utils import timezone
 def mainpage(request):
     return render(request, 'cspapp/principal.html')
 
-def profile(request):
-    users = User.objects.all()
+def profile(request,rest_pk):
+    profile = User.objects.get(id=rest_pk)
+    #projects = Project.objects.all()
+    #return render(request, 'cspapp/profile.html', {'projects' : projects} )
+    #return render(request, 'cspapp/profile.html', {'profile': profile})
     projects = Project.objects.all()
-    return render(request, 'cspapp/profile.html', {'projects' : projects})
+
+    context = {'profile': profile, 'projects': projects}
+    return render(request, 'cspapp/profile.html', context=context)
 
 
 class ProjectsList(ListView):
@@ -142,7 +147,6 @@ def delete_answer(request, rest_pk):
     activity = ActivityAnswer.objects.get(pk=rest_pk).project
     ans.delete()
     return redirect(reverse_lazy('cspapp:activities_detail', kwargs={'pk':activity.id}))
-
 
 
 

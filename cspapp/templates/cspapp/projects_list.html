@@ -1,14 +1,77 @@
-{% extends "cspapp/base.html" %}
+
 <html>
   <head>
     <title> Projects </title>
+
+      <script
+ 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+ 	</script>
+
+ 	<link rel="stylesheet"
+ 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  	<script
+  	src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
   </head>
+  {% extends "cspapp/base.html" %}
   <body>
   <div id="content">
      {% block project_list %}
      <h2 id="stdnavy">Projects
        (<a href="{% url 'cspapp:project_create' %}">add</a>)
      </h2>
+
+
+        <style>
+
+          .divisor{
+
+              display: table;
+              margin: 0 auto;
+              margin-top: 50px;
+          }
+
+	    </style>
+
+        <script>
+            $(function(){
+                var genre = [
+                    "Best project ever",
+                    "New one",
+                    "Other one",
+
+
+                ];
+                $( "#groups_auto" ).autocomplete({
+                    source: genre
+                });
+
+            });
+        </script>
+
+         <div class="divisor">
+                <label for="tags">Search for project: </label>
+                <input id="groups_auto">
+                <button onclick="myFunction(groups_auto.value)">Go to project</button>
+
+         </div>
+    <script>
+
+    function myFunction(PROJECT) {
+
+        if (PROJECT == "Best project ever")
+         window.location="http://127.0.0.1:8000/cspapp/projects/1";
+
+        if (PROJECT == "New one")
+         window.location="http://127.0.0.1:8000/cspapp/projects/2";
+
+        if (PROJECT == "Other one")
+         window.location="http://127.0.0.1:8000/cspapp/projects/3";
+    }
+    </script>
+
 
      {% if projects %}
     <ul id="projectlist">

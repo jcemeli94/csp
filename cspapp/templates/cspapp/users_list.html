@@ -60,6 +60,7 @@
 
 
 <script>
+
         $(function(){
             var genre = [
                 "admin",
@@ -89,7 +90,10 @@
 
     <script>
     function myFunction(USERNAME) {
-         window.location="http://127.0.0.1:8000/profile"+"/"+USERNAME.id;
+
+            window.location="http://127.0.0.1:8000/profile/"+USERNAME;
+
+
     }
     </script>
 
@@ -102,8 +106,7 @@
          {% for user in users %}
 
 
-<li><a id="list" href="http://127.0.0.1:8000/profile/{{ user.id }}"> {{ user.username }} </a></li>
-
+<li><a id="list" href="{% url 'profile'  user.id  %}"> {{ user.username }} </a></li>
 
           {% endfor %}
 
