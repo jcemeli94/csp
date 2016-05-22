@@ -31,6 +31,7 @@
     {% for activity in object.projectactivity_set.all %}
         <li><a id="greyfonts" href="{% url "cspapp:activities_detail" activity.id%}"> {{activity.title}} </a></li>
     {% endfor %}
+
 </ul>
 </nav>
 

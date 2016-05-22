@@ -4,6 +4,7 @@
     <title> Projects </title>
   </head>
   <body>
+  <div id="content">
      {% block project_list %}
      <h2 id="stdnavy">Projects
        (<a href="{% url 'cspapp:project_create' %}">add</a>)
@@ -27,5 +28,6 @@
      {% endblock %}
     <br>
       <a href='/'> Home </a>
+  </div>
   </body>
 </html>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 
 <head>
-    <title>Base Citizen Science Platform UDL</title>
+    <title>Users_List Base Citizen Science Platform UDL</title>
 
     <script
  	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
@@ -79,13 +79,13 @@
 
 
     </script>
+<div id="content">
 
-         <div class="divisor">
-                <label for="tags">Search for user: </label>
+                <h2 id="stdnavy">Users search</h2>
                 <input id="groups_auto">
-                <button onclick="myFunction(groups_auto.value)">Go to profile</button>
+                <button onclick="myFunction(groups_auto.value)">Search</button>
 
-         </div>
+
 
     <script>
     function myFunction(USERNAME) {
@@ -96,9 +96,9 @@
 
 
 
- <div class="divisor">
-    <h3>Users List:</h3>
-<ul style="list-style-type:disc">
+
+    <<h2 id="stdnavy">Users List:</h2>
+<ul id="projectlist">
          {% for user in users %}
 
 
@@ -108,7 +108,7 @@
           {% endfor %}
 
 </ul>
-  </div>
+</div>
 
 
 </body>

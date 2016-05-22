@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 
 <head>
-    <title>Base Citizen Science Platform UDL</title>
+    <title>Profile Base Citizen Science Platform UDL</title>
 
     <script
  	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
@@ -19,7 +19,7 @@
   	<script
   	src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    <style>
+ <!--    <style>
 
 	  .divisor{
 
@@ -29,7 +29,7 @@
           width: 1572px;
 	  }
 
-	</style>
+	</style> -->
 
 </head>
 
@@ -56,19 +56,30 @@
     {% endblock %}
 
     <li><a id="greyfonts" href="http://127.0.0.1:8000/admin">Admin</a></li>
+    <hr>
+    <li><a id="greyfonts" href="/cspapp/users">Users list</a></li>
 </ul>
 </nav>
 
+<div id="content">
+    <!--  <div class="divisor"> -->
 
- <div class="divisor">
+                <h1>User profile</h1>
+                <h2 id="stdnavy">Overview:</h2>
+                <table>
+                <tr>
+                <th>User name</th>
+                <th>e-mail</th>
+                <th>Joined</th>
+                <th>Last login</th>
+                </tr>
 
-
-                <h2>Overview:</h2>
-                <h4>First name:{{ user.username }}</h4>
-                <h4>Email: {{ user.email }}</h4>
-                <h4>Joined: {{ user.date_joined }}</h4>
-                <h4>Last login: {{ user.last_login }}</h4>
- <br />
+                <td style="width:150px">{{ user.username }}</td>
+                <td style="width:200px">{{ user.email }}</td>
+                <td style="width:200px"; align="center">{{ user.date_joined }}</td>
+                <td style="width:200px"; align="center">{{ user.last_login }}</td>
+                </table>
+     <br />
 
                 <h2>{{ user.username }}'s activity in the platform:</h2>
                 {% for project in projects %}
@@ -92,9 +103,10 @@
                     {% endfor %}
                     <br>
                 {% endfor %}
- <br />
+    <br />
 
 
- </div>
+    </div>
+<!-- </div> -->
 </body>
 </html>
